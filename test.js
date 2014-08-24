@@ -19,6 +19,7 @@ test('create simple resourcer', function(t) {
 });
 
 test('should ping -> pong', function(t) {
+  t.plan(2);
   resource.fetch('ping', function(err, res) {
     t.ok(!err, 'not error');
     t.equal(res, 'pong');
@@ -27,6 +28,7 @@ test('should ping -> pong', function(t) {
 });
 
 test('should upper case', function(t) {
+  t.plan(2);
   resource.fetch('beep', function(err, res) {
     t.ok(!err, 'not err');
     t.equal(res, 'BEEP');
@@ -48,7 +50,7 @@ test('create an async resourcer', function(t) {
       setTimeout(function() {
         if (y === 'beep')
           self.done(y.toUpperCase());
-        else
+        else if (y === 'China')
           self.next();
       }, 200);
     },
@@ -59,7 +61,7 @@ test('create an async resourcer', function(t) {
 
 // XXX: use sinon by exact testing for timer
 test('should ping -> 100 -> pong', function(t) {
-  var start = Date.now();
+  t.plan(2);
   resource.fetch('ping', function(err, res) {
     t.ok(!err, 'not err');
     t.equal(res, 'pong');
@@ -69,6 +71,7 @@ test('should ping -> 100 -> pong', function(t) {
 
 // XXX: use sinon by exact testing for timer
 test('should upper case with async', function(t) {
+  t.plan(2);
   resource.fetch('beep', function(err, res) {
     t.ok(!err, 'not err');
     t.equal(res, 'BEEP');
@@ -77,12 +80,33 @@ test('should upper case with async', function(t) {
 });
 
 test('should alongly node :(', function(t) {
+  t.plan(2);
   resource.fetch('China', function(err, res) {
     t.ok(!err, 'not err');
     t.equal(res, 'alonely node');
     t.end();
   });
 });
+
+test('timeout without timer', function(t) {
+  t.plan(1);
+  resource.setTimeout(100);
+  resource.fetch('USA', function(err, res) {
+    t.ok(err);
+    t.end();
+  });
+});
+
+test('timeout with timer', function(t) {
+  t.plan(2);
+  resource.setTimeout(100, function() {
+    t.ok(true, 'successfully timeout in timer');
+  });
+  resource.fetch('USA', function(err, res) {
+    t.ok(err);
+    t.end();
+  });
+})
 
 test('create simple resourcer', function(t) {
   try {
