@@ -1,6 +1,6 @@
 {
   "name": "priority",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "priority resources dispatcher for nodejs",
   "main": "index.js",
   "scripts": {
