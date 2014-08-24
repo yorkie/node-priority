@@ -26,7 +26,9 @@ PriorityResource.prototype.fetch = function() {
 
   var context = {};
   context.next = fetch;
-  context.done = callback;
+  context.done = function(res) {
+    callback(null, res);
+  };
   return fetch();
 
   function fetch() {
