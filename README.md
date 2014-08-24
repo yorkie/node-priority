@@ -27,7 +27,7 @@ resource.fetch('beep', function(err, res) {
 
 ```
 
-`node-priority` support timeout, the default value is `30` seconds, and you can define your timer before fetch like that:
+`node-priority` supports timeout, the default value is `30` seconds, and you can define your `timer` before `.fetch()`:
 
 ```js
 resource.setTimeout(100); // set timeout to 100ms
@@ -41,7 +41,7 @@ resource.setTimeout(100, function() {
 });
 ```
 
-For convience, it support set back to default timeout by:
+For convience, it supports set back to default timeout by:
 
 ```js
 resource.setTimeout();  // set back to default timeout
