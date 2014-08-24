@@ -1,0 +1,26 @@
+{
+  "name": "priority",
+  "version": "0.0.0",
+  "description": "priority resources dispatcher for nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:yorkie/node-priority.git"
+  },
+  "keywords": [
+    "resource",
+    "priority"
+  ],
+  "author": "Yorkie Neil <yorkiefixer@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yorkie/node-priority/issues"
+  },
+  "homepage": "https://github.com/yorkie/node-priority",
+  "dependencies": {
+    "tape": "^2.14.0"
+  }
+}

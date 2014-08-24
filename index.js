@@ -1,9 +1,9 @@
 
-function PriorityRes(queues) {
+function PriorityResource(queues) {
   if (!queues || !queues.length || !queues.map)
     throw new Error('queues required');
-  if (!(this instanceof PriorityRes))
-    return new PriorityRes(queues);
+  if (!(this instanceof PriorityResource))
+    return new PriorityResource(queues);
   var self = this;
   var mustBeEnd = false;
   queues.map(function(queue) {
@@ -13,20 +13,19 @@ function PriorityRes(queues) {
       mustBeEnd = true;
   });
   this._queues = queues;
-  return this;
 }
 
-PriorityRes.prototype.fetch = function() {
+PriorityResource.prototype.fetch = function() {
   var self = this;
   var args = arguments;
-  var queues = this.queues;
+  var queues = this._queues;
   var callback = args[args.length - 1];
 
   if (typeof callback !== 'function')
     throw new Error('callback required');
 
   var context = {};
-  context.skip = fetch;
+  context.next = fetch;
   context.done = callback;
   return fetch();
 
@@ -45,3 +44,5 @@ PriorityRes.prototype.fetch = function() {
     } while (queues.length);
   }
 };
+
+exports.PriorityResource = PriorityResource;
