@@ -27,6 +27,26 @@ resource.fetch('beep', function(err, res) {
 
 ```
 
+`node-priority` support timeout, the default value is `30` seconds, and you can define your timer before fetch like that:
+
+```js
+resource.setTimeout(100); // set timeout to 100ms
+```
+
+You also can define new timer to get `timeout` event:
+
+```js
+resource.setTimeout(100, function() {
+  // will call once there is a request timeout
+});
+```
+
+For convience, it support set back to default timeout by:
+
+```js
+resource.setTimeout();  // set back to default timeout
+```
+
 ### Implement an XML/JSON HTTP router(but priority with JSON response)
 ```js
 // define your resourcer
